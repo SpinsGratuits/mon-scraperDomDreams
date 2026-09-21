@@ -47,7 +47,7 @@ if status_code == 200:
             
             # Déterminer la quantité de dés
             des_match = re.search(r'\d+\s*(?:Dés|dés|Rolls|rolls|lancers)', clean_text)
-            quantite_des = des_match.group(0) if des_match else ""2X Pièces gratuit"
+            quantite_des = des_match.group(0) if des_match else "2X Pièces gratuit"
             quantite_des = quantite_des.replace("Récupérer", "").strip()
             
             # Éviter les doublons (on vérifie la clé 'Lien Direct Récompense' dans les dictionnaires existants)
