@@ -6,7 +6,7 @@ import cloudscraper
 from bs4 import BeautifulSoup
 
 # --- 1. CONFIGURATION ---
-url = "https://mosttechs.com/domino-dreams-free-coins/m"
+url = "https://mosttechs.com/domino-dreams-free-coins/"
 filename = "scrapdominodreams.json"
 
 # Dictionnaire de traduction des mois pour la conversion en vraies dates Python
