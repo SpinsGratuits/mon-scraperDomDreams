@@ -6,9 +6,8 @@ import cloudscraper
 from bs4 import BeautifulSoup
 
 # --- 1. CONFIGURATION ---
-# URL configurée spécifiquement pour la page Domino Dreams de Mosttechs
-url = "https://mosttechs.com/domino-dreams-free-coins/"
-filename = "scrapdominodreams.json"  # Fichier dédié à Domino Dreams
+url = "https://mosttechs.com/domino-dreams-free-coins/m"
+filename = "scrapdominodreams.json"
 
 # Dictionnaire de traduction des mois pour la conversion en vraies dates Python
 mois_en_to_num = {
@@ -30,7 +29,7 @@ if os.path.exists(filename):
     except Exception as e:
         print(f"[Attention] Impossible de lire l'historique JSON : {e}")
 
-# Client de contournement anti-bot Cloudflare
+# Client anti-bot pour contourner Cloudflare de Mosttechs
 scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'mobile': False})
 
 try:
@@ -84,26 +83,26 @@ if status_code == 200:
             current_date_str = f"{jour}/{num_mois}/{annee}"
             continue  # Date mise en mémoire, passage aux blocs inférieurs pour isoler les liens
             
-        # Extraction des liens hypertextes présents dans le bloc courant
+        # Extraction des liens de récompense
         links = element.find_all("a", href=True)
         for link in links:
             href = link["href"].strip()
             
-            # Filtres sanitaires (Exclusion des partages sociaux et structures de navigation interne)
+            # Filtres d'exclusion (Réseaux sociaux et structures de navigation interne)
             if href.startswith("/") or "t.me" in href.lower() or "telegram.me" in href.lower():
                 continue
             if any(p in href.lower() for p in ["twitter.com", "facebook.com", "whatsapp", "pinterest", "reddit.com"]):
                 continue
                 
-            # Mots-clés d'identification des redirections de récompense Domino Dreams
-            keywords = ["dominodreams", "superplay", "t.co", "bit.ly"]
+            # Ajout de 'join.domino-dreams' à la liste de mots-clés de confiance
+            keywords = ["dominodreams", "superplay", "d10xl", "join.domino-dreams", "t.co", "bit.ly"]
             if any(key in href.lower() for key in keywords):
                 
                 # Validation de la politique d'auto-nettoyage à 6 jours
                 try:
                     date_objet = datetime.strptime(current_date_str, "%d/%m/%Y")
                     if date_objet < limite_conservation:
-                        continue  # Lien expiré par rapport au calendrier du site, ignoré
+                        continue  # Lien expiré selon le calendrier du site, ignoré
                 except:
                     pass
                 
@@ -113,9 +112,9 @@ if status_code == 200:
                 
                 type_recompense = "Coins gratuits"
                 
-                # --- STRATÉGIE DE RECONSTITUTION ET DE CONSERVATION DES ANCIENNES HEURES ---
+                # --- STRATÉGIE DE RECONSTITUTION ET DE CONSERVATION STRICTE ---
                 if href in anciens_liens:
-                    # ANCIEN LIEN : On réinjecte les anciennes clés historiques sans altération (l'heure d'origine reste figée)
+                    # ANCIEN LIEN : Récupération directe de l'historique sans altération horaire
                     json_data.append({
                         "date_scraping": anciens_liens[href].get("date_scraping", date_now_str), 
                         "date_scraping1": anciens_liens[href].get("date_scraping1", f"{current_date_str} @ {heure_actuelle_str}"),
@@ -126,7 +125,7 @@ if status_code == 200:
                         "badge": "" 
                     })
                 else:
-                    # NOUVEAU LIEN : On capture la date de parution lue sur Mosttechs et l'heure actuelle de sa détection
+                    # NOUVEAU LIEN : Enregistrement initial avec la date du site et l'heure actuelle du robot
                     date_scraping1_combinee = f"{current_date_str} @ {heure_actuelle_str}"
                     json_data.append({
                         "date_scraping": date_now_str, 
@@ -157,7 +156,7 @@ if status_code == 200:
     with open(filename, mode="w", encoding="utf-8") as json_file:
         json.dump(json_data, json_file, indent=4, ensure_ascii=False)
         
-    print(f"[Terminé] Fichier Domino Dreams {filename} généré avec succès ({len(json_data)} liens classés chronologiquement).")
+    print(f"[Terminé] Fichier Domino Dreams {filename} généré avec succès ({len(json_data)} liens classés chronologiquement). Anciennes dates figées.")
             
 else:
     print(f"[Erreur] Échec de la communication réseau avec Mosttechs (Code {status_code}).")
