@@ -1,5 +1,21 @@
 [
     {
+        "date_scraping": "26/09/2026 @ 08:01",
+        "date": "26/09/2026",
+        "heure": "08:01",
+        "recompense": "Tours / Pièces",
+        "lienurl": "https://join.domino-dreams.com/555?key=rhtvJKFqSNn",
+        "badge": "NEW"
+    },
+    {
+        "date_scraping": "26/09/2026 @ 08:01",
+        "date": "26/09/2026",
+        "heure": "08:01",
+        "recompense": "Tours / Pièces",
+        "lienurl": "https://join.domino-dreams.com/social?key=rMIaFtLKQTp",
+        "badge": "NEW"
+    },
+    {
         "date_scraping": "24/09/2026 à 19:02",
         "date": "24/09/2026",
         "heure": "19:02",
@@ -93,14 +109,6 @@
         "heure": "12:40",
         "recompense": "Tours / Pièces",
         "lienurl": "https://join.domino-dreams.com/dynamo?key=raJofIRzHwQ",
-        "badge": ""
-    },
-    {
-        "date_scraping": "23/09/2026 à 12:40",
-        "date": "23/09/2026",
-        "heure": "12:40",
-        "recompense": "Tours / Pièces",
-        "lienurl": "https://join.domino-dreams.com/fb?key=rzWAbwTceBF",
         "badge": ""
     }
 ]
