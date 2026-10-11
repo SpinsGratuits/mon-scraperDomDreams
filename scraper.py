@@ -97,6 +97,14 @@ if status_code == 200:
             current_date_str = f"{jour}/{num_mois}/{annee}"
             continue  
             
+       # 🟢 AJOUT : On vérifie si la date de la section actuelle est trop vieille (inférieure à limite_conservation)
+        try:
+            date_section = datetime.strptime(current_date_str, "%d/%m/%Y")
+            # Si la date lue sur le site est plus vieille que notre limite, on ignore tous ses liens
+            if date_section < limite_conservation:
+                continue
+        except:
+            pass
         links = element.find_all("a", href=True)
         for link in links:
             href = link["href"].strip()
