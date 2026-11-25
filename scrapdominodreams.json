@@ -6,7 +6,7 @@
         "heure": "18:01",
         "recompense": "Coins gratuits",
         "lienurl": "https://join.domino-dreams.com/dynamo?key=rsPQGznQjng",
-        "badge": "NEW"
+        "badge": ""
     },
     {
         "date_scraping": "24/11/2026 @ 16:01",
@@ -105,15 +105,6 @@
         "heure": "07:01",
         "recompense": "Coins gratuits",
         "lienurl": "https://join.domino-dreams.com/555?key=rMpxSDaJYQV",
-        "badge": ""
-    },
-    {
-        "date_scraping": "19/11/2026 @ 17:26",
-        "date_scraping1": "19/11/2026 @ 17:26",
-        "date": "19/11/2026",
-        "heure": "17:26",
-        "recompense": "Coins gratuits",
-        "lienurl": "https://join.domino-dreams.com/fb?key=rMBRIwJIoom",
         "badge": ""
     }
 ]
